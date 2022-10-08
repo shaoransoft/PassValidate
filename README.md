@@ -1,5 +1,6 @@
 # passValidate.js v.1.0.0
 jQuery library for validation password entry. So that users can see if their password is strong or not.
+<p>developer 2022 Shaoransoft</p>
 <h3>Requirements</h3>
 <ul>
   <li>Bootstrap 4.6.0+ (Support Bootstrap 5)</li>
