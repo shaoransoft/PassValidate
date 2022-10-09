@@ -1,5 +1,5 @@
 /*!
-PassValidate v.1.0.1
+PassValidate v.1.0.2
 
 (c) 2022 Shaoransoft
 */
@@ -47,8 +47,21 @@ PassValidate v.1.0.1
         vLowercase: true,
         vNumeric: true,
         vSpecialChar: true,
+        specialChar: "!@#$%^&*_+\-.?",
         vLength: true,
-        lengthMin: 8,
+        length: 8,
+        language: {
+            vUppercaseText: "ABC",
+            vUppercase: "Enter uppercase letters",
+            vLowercaseText: "abc",
+            vLowercase: "Enter lowercase letters",
+            vNumericText: "123",
+            vNumeric: "Enter numeric",
+            vSpecialCharText: "$@#",
+            vSpecialChar: "Enter special character",
+            vLengthText: "Length __LENGTH__+",
+            vLength: "Enter at least __LENGTH__ characters",
+        },
         callback: function() {}
     };
 
@@ -65,21 +78,23 @@ PassValidate v.1.0.1
             _validate.numeric = /[0-9]/g.test(string);
         }
         if (options.vSpecialChar === true) {
-            _validate.specialChar = /[`!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/g.test(string);
+            const regex = new RegExp('['+options.specialChar+']','g');
+            _validate.specialChar = regex.test(string);
         }
         if (options.vLength === true) {
-            _validate.length = string.length>=options.lengthMin;
+            _validate.length = string.length >= options.length;
         }
     };
 
     $.fn.passValidate.render = function(options) {
         var elementTarget = options.eTarget;
+        var language = options.language;
         if (elementTarget == undefined)
             return;
         if (options.vUppercase === true) {
             var eUppercase = elementTarget.find('[validate-form="uppercase"]');
             if (eUppercase.length == 0) {
-                elementTarget.append('<span class="btn btn-'+(_validate.uppercase?'success':'light')+' btn-sm fw-bold" validate-form="uppercase" title="Enter capital letters">ABC</span> ');
+                elementTarget.append('<span class="pvd-uppercase btn btn-'+(_validate.uppercase?'success':'light')+' btn-sm fw-bold" validate-form="uppercase" title="'+language.vUppercase+'">'+language.vUppercaseText+'</span> ');
             }
             else {
                 if (_validate.uppercase) {
@@ -93,7 +108,7 @@ PassValidate v.1.0.1
         if (options.vLowercase === true) {
             var eLowercase = elementTarget.find('[validate-form="lowercase"]');
             if (eLowercase.length == 0) {
-                elementTarget.append('<span class="btn btn-'+(_validate.lowercase?'success':'light')+' btn-sm fw-bold" validate-form="lowercase" title="Enter lowercase letters">abc</span> ');
+                elementTarget.append('<span class="pvd-lowercase btn btn-'+(_validate.lowercase?'success':'light')+' btn-sm fw-bold" validate-form="lowercase" title="'+language.vLowercase+'">'+language.vLowercaseText+'</span> ');
             }
             else {
                 if (_validate.lowercase) {
@@ -107,7 +122,7 @@ PassValidate v.1.0.1
         if (options.vNumeric === true) {
             var eNumeric = elementTarget.find('[validate-form="numeric"]');
             if (eNumeric.length == 0) {
-                elementTarget.append('<span class="btn btn-'+(_validate.numeric?'success':'light')+' btn-sm fw-bold" validate-form="numeric" title="Enter number">123</span> ');
+                elementTarget.append('<span class="pvd-numeric btn btn-'+(_validate.numeric?'success':'light')+' btn-sm fw-bold" validate-form="numeric" title="'+language.vNumeric+'">'+language.vNumericText+'</span> ');
             }
             else {
                 if (_validate.numeric) {
@@ -121,7 +136,7 @@ PassValidate v.1.0.1
         if (options.vSpecialChar === true) {
             var eSpecialChar = elementTarget.find('[validate-form="specialChar"]');
             if (eSpecialChar.length == 0) {
-                elementTarget.append('<span class="btn btn-'+(_validate.specialChar?'success':'light')+' btn-sm fw-bold" validate-form="specialChar" title="Enter special character">$@#</span> ');
+                elementTarget.append('<span class="pvd-specialchar btn btn-'+(_validate.specialChar?'success':'light')+' btn-sm fw-bold" validate-form="specialChar" title="'+language.vSpecialChar.replace('__SPECIAL_CHAR__', options.specialChar)+'">'+language.vSpecialCharText.replace('__SPECIAL_CHAR__', options.specialChar)+'</span> ');
             }
             else {
                 if (_validate.specialChar) {
@@ -135,7 +150,7 @@ PassValidate v.1.0.1
         if (options.vLength === true) {
             var eLength = elementTarget.find('[validate-form="length"]');
             if (eLength.length == 0) {
-                elementTarget.append('<span class="btn btn-'+(_validate.length?'success':'light')+' btn-sm fw-bold" validate-form="length" title="Enter at least '+options.lengthMin+' characters">Length '+options.lengthMin+'+</span> ');
+                elementTarget.append('<span class="pvd-length btn btn-'+(_validate.length?'success':'light')+' btn-sm fw-bold" validate-form="length" title="'+language.vLength.replace('__LENGTH__', options.length)+'">'+language.vLengthText.replace('__LENGTH__', options.length)+'</span> ');
             }
             else {
                 if (_validate.length) {
@@ -146,7 +161,7 @@ PassValidate v.1.0.1
                 }
             }
         }
-    }
+    };
 
     $.fn.passValidate.callback = function(options) {
         if (((options.vUppercase && _validate.uppercase) || !options.vUppercase) &&
@@ -157,7 +172,7 @@ PassValidate v.1.0.1
             return true;
         }
         return false;
-    }
+    };
 
     var _validate = {
         uppercase: false,

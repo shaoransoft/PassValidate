@@ -13,10 +13,10 @@
 </head>
 <body>
     <div class="container">
-        <h1>passValidate.js v.1.0.1</h1>
+        <h1>passValidate.js v.1.0.2</h1>
         <p>jQuery library for validation password entry. So that users can see if their password is strong or not.</p>
         <p>developer 2022 Shaoransoft. <a href="https://github.com/shaoransoft/PassValidate">github</a></p>
-        <h3>Demo basic</h3>
+        <h3 id="demo-basic-section">Demo basic</h3>
         <form class="mb-3">
             <div class="mb-3" id="validate_display"></div>
             <div class="mb-3">
@@ -41,12 +41,13 @@
             });
         </script>
         <hr>
-        <h3>Requirements</h3>
+        <h3 id="requirements-section">Requirements</h3>
         <ul>
             <li>Bootstrap 4.6.0+ (Support Bootstrap 5)</li>
             <li>jQuery 1.7.1+</li>
         </ul>
-        <h3>Usage</h3>
+        <hr>
+        <h3 id="usage-section">Usage</h3>
         <p>Call the datepicker via javascript:</p>
 <pre class="prettyprint"><code class="language-java">$('#password').passValidate({
     eTarget: $('#validate_display')
@@ -56,13 +57,39 @@
     callback: function(result) {
         console.log(result);    // return is true or false
     }
-});</code></pre>
-        <h3>Configuration</h3>
+});</code></pre><br>
+    <p>Full source code in <a href="#demo-basic-section">demo basic</a>:</p>
+<pre class="prettyprint"><code lang="markup" class="language-markup">&lt;form&gt;
+    &lt;div class="mb-3" id="validate_display"&gt;&lt;/div&gt;
+    &lt;div class="mb-3"&gt;
+        &lt;label for="password" class="form-label"&gt;Password&lt;/label&gt;
+        &lt;input type="password" class="form-control" id="password" placeholder="Enter password"&gt;
+    &lt;/div&gt;
+    &lt;button type="submit" class="btn btn-primary" disabled&gt;Submit&lt;/button&gt;
+&lt;/form&gt;
+&lt;script&gt;
+    $(document).ready(function() {
+        $('#password').passValidate({
+            eTarget: $('#validate_display'),
+            callback: function(result) {
+                if (result == true) {
+                    $('button[type="submit"]').prop('disabled', false);
+                }
+                else {
+                    $('button[type="submit"]').prop('disabled', true);
+                }
+            }
+        });
+    });
+&lt;/script&gt;</code></pre>
+        <hr>
+        <h3 id="configuration-section">Configuration</h3>
+        <h5 id="configuration-general">General</h5>
         <table class="table table-bordered">
             <thead>
                 <tr class="bg-light">
                     <th width="20%">Option</th>
-                    <th width="20%">Value</th>
+                    <th width="25%">Value</th>
                     <th>Description</th>
                 </tr>
             </thead>
@@ -70,42 +97,116 @@
                 <tr>
                     <td>eTarget</td>
                     <td>target element<br><span class="text-primary">Default: #validate_display</span></td>
-                    <td>Display validation in a minimalist style</td>
+                    <td>Display validation in a minimalist style.</td>
                 </tr>
                 <tr>
                     <td>vUppercase</td>
                     <td>true / false<br><span class="text-primary">Default: true</span></td>
-                    <td>Validate for entering uppercase characters</td>
+                    <td>Validate for entering uppercase characters.</td>
                 </tr>
                 <tr>
                     <td>vLowercase</td>
                     <td>true / false<br><span class="text-primary">Default: true</span></td>
-                    <td>Validate for entering lowercase characters</td>
+                    <td>Validate for entering lowercase characters.</td>
                 </tr>
                 <tr>
                     <td>vNumeric</td>
                     <td>true / false<br><span class="text-primary">Default: true</span></td>
-                    <td>Validate for entering numbers</td>
+                    <td>Validate for entering numbers.</td>
                 </tr>
                 <tr>
                     <td>vSpecialChar</td>
                     <td>true / false<br><span class="text-primary">Default: true</span></td>
-                    <td>Validate for entering special character</td>
+                    <td>Validate for entering special character.</td>
+                </tr>
+                <tr>
+                    <td>specialChar</td>
+                    <td>string<br><span class="text-primary">Default: !@#$%^&*_+-.?</span></td>
+                    <td>Set special characters for validation.</td>
                 </tr>
                 <tr>
                     <td>vLength</td>
                     <td>true / false<br><span class="text-primary">Default: true</span></td>
-                    <td>Validate for character length</td>
+                    <td>Validate for character length.</td>
                 </tr>
                 <tr>
-                    <td>lengthMin</td>
+                    <td>length</td>
                     <td>numeric<br><span class="text-primary">Default: 8</span></td>
-                    <td>Minimum character length</td>
+                    <td>Minimum character length.</td>
+                </tr>
+                <tr>
+                    <td>language</td>
+                    <td>array <a href="#configuration-language">see more</a></td>
+                    <td>Set display description for display. <a href="#configuration-language">see more</a></td>
                 </tr>
                 <tr>
                     <td>callback</td>
                     <td></td>
-                    <td>Callback function results from validation is true or false<br><span class="text-primary">Default: false</span></td>
+                    <td>Callback function results from validation is true or false.<br><span class="text-primary">Default: false</span></td>
+                </tr>
+            </tbody>
+        </table>
+        <h5 id="configuration-language">Language</h5>
+        <table class="table table-bordered">
+            <thead>
+                <tr class="bg-light">
+                    <th width="20%">Option</th>
+                    <th width="25%">Value</th>
+                    <th>Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>vUppercaseText</td>
+                    <td>string<br><span class="text-primary">Default: ABC</span></td>
+                    <td>Set display uppercase validation text.</td>
+                </tr>
+                <tr>
+                    <td>vUppercase</td>
+                    <td>string<br><span class="text-primary">Default: Enter uppercase letters</span></td>
+                    <td>Set description uppercase validation in title attribute.</td>
+                </tr>
+                <tr>
+                    <td>vLowercaseText</td>
+                    <td>string<br><span class="text-primary">Default: abc</span></td>
+                    <td>Set display lowercase validation text.</td>
+                </tr>
+                <tr>
+                    <td>vLowercase</td>
+                    <td>string<br><span class="text-primary">Default: Enter lowercase letters</span></td>
+                    <td>Set description lowercase validation in title attribute.</td>
+                </tr>
+                <tr>
+                    <td>vNumericText</td>
+                    <td>string<br><span class="text-primary">Default: 123</span></td>
+                    <td>Set display numeric character validation text.</td>
+                </tr>
+                <tr>
+                    <td>vNumeric</td>
+                    <td>string<br><span class="text-primary">Default: Enter numeric</span></td>
+                    <td>Set description numeric character validation in title attribute.</td>
+                </tr>
+                <tr>
+                    <td>vSpecialCharText</td>
+                    <td>string<br><span class="text-primary">Default: $@#</span></td>
+                    <td>Set display special character validation text.<br>Can use <code>__SPECIAL_CHAR__</code> to display special characters set with option <a href="#configuration-general">specialChar</a> on the description.</td>
+                </tr>
+                <tr>
+                    <td>vSpecialChar</td>
+                    <td>string<br><span class="text-primary">Default: Enter special character</span></td>
+                    <td>Set description special character validation in title attribute.<br>Can use <code>__SPECIAL_CHAR__</code> to display special characters set with option <a href="#configuration-general">specialChar</a> on the description.</td>
+                </tr>
+
+
+                <tr>
+                    <td>vLengthText</td>
+                    <td>string<br><span class="text-primary">Default: Length <code>__LENGTH__</code>+</span></td>
+                    <td>Set display character length text.<br>Can use <code>__LENGTH__</code> to display minimum character length set with option <a href="#configuration-general">length</a> on the description.</td>
+                </tr>
+                <tr>
+                    <td>vLength</td>
+                    <td>string<br><span class="text-primary">Default: Enter at least <code>__LENGTH__</code> characters</span></td>
+                    <td>Set description character length in title attribute.<br>Can use <code>__LENGTH__</code> to display minimum character length set with option <a href="#configuration-general">length</a> on the description.</td>
                 </tr>
             </tbody>
         </table>
