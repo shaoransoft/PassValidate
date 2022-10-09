@@ -13,7 +13,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>passValidate.js v.1.0.0</h1>
+        <h1>passValidate.js v.1.0.1</h1>
         <p>jQuery library for validation password entry. So that users can see if their password is strong or not.</p>
         <p>developer 2022 Shaoransoft. <a href="https://github.com/shaoransoft/PassValidate">github</a></p>
         <h3>Demo basic</h3>
@@ -23,12 +23,20 @@
                 <label for="password" class="form-label">Password</label>
                 <input type="password" class="form-control" id="password" placeholder="Enter password">
             </div>
-            <button class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary" disabled>Submit</button>
         </form>
         <script>
             $(document).ready(function() {
                 $('#password').passValidate({
-                    eTarget: $('#validate_display')
+                    eTarget: $('#validate_display'),
+                    callback: function(result) {
+                        if (result == true) {
+                            $('button[type="submit"]').prop('disabled', false);
+                        }
+                        else {
+                            $('button[type="submit"]').prop('disabled', true);
+                        }
+                    }
                 });
             });
         </script>
@@ -42,6 +50,12 @@
         <p>Call the datepicker via javascript:</p>
 <pre class="prettyprint"><code class="language-java">$('#password').passValidate({
     eTarget: $('#validate_display')
+});</code></pre><br>
+        <p>Can get callback results from validation:</p>
+<pre class="prettyprint"><code class="language-java">$('#password').passValidate({
+    callback: function(result) {
+        console.log(result);    // return is true or false
+    }
 });</code></pre>
         <h3>Configuration</h3>
         <table class="table table-bordered">
@@ -74,6 +88,11 @@
                     <td>Validate for entering numbers</td>
                 </tr>
                 <tr>
+                    <td>vSpecialChar</td>
+                    <td>true / false<br><span class="text-primary">Default: true</span></td>
+                    <td>Validate for entering special character</td>
+                </tr>
+                <tr>
                     <td>vLength</td>
                     <td>true / false<br><span class="text-primary">Default: true</span></td>
                     <td>Validate for character length</td>
@@ -82,6 +101,11 @@
                     <td>lengthMin</td>
                     <td>numeric<br><span class="text-primary">Default: 8</span></td>
                     <td>Minimum character length</td>
+                </tr>
+                <tr>
+                    <td>callback</td>
+                    <td></td>
+                    <td>Callback function results from validation is true or false<br><span class="text-primary">Default: false</span></td>
                 </tr>
             </tbody>
         </table>
