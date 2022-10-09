@@ -1,4 +1,4 @@
-# passValidate.js v.1.0.1
+# passValidate.js v.1.0.2
 jQuery library for validation password entry. So that users can see if their password is strong or not.
 <p>developer 2022 Shaoransoft</p>
 <h3>Requirements</h3>
@@ -8,17 +8,17 @@ jQuery library for validation password entry. So that users can see if their pas
 </ul>
 <h3>Usage</h3>
 <p>Call the datepicker via javascript:</p>
-<pre><code class="language-java">$('#password').passValidate({
+<pre><code>$('#password').passValidate({
     eTarget: $('#validate_display')
 });</code></pre><br>
 <p>Can get callback results from validation:</p>
-<pre class="prettyprint"><code class="language-java">$('#password').passValidate({
+<pre><code>$('#password').passValidate({
     callback: function(result) {
         console.log(result);    // return is true or false
     }
 });</code></pre><br>
     <p>Full source code demo basic:</p>
-<pre class="prettyprint"><code lang="markup" class="language-markup">&lt;form&gt;
+<pre><code>&lt;form&gt;
     &lt;div class="mb-3" id="validate_display"&gt;&lt;/div&gt;
     &lt;div class="mb-3"&gt;
         &lt;label for="password" class="form-label"&gt;Password&lt;/label&gt;
