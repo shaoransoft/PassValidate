@@ -4,7 +4,6 @@ jQuery library for validation password entry. So that users can see if their pas
 <a href="https://shaoransoft.github.io/PassValidate/demo.html" target="_blank">Demo</a>
 <h3>Requirements</h3>
 <ul>
-  <li>Bootstrap 4.6.0+ (Support Bootstrap 5)</li>
   <li>jQuery 1.7.1+</li>
 </ul>
 <h3>Usage</h3>
