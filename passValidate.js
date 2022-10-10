@@ -1,5 +1,5 @@
 /*!
-PassValidate v.1.0.2
+PassValidate v.1.0.3
 
 (c) 2022 Shaoransoft
 */
@@ -62,12 +62,23 @@ PassValidate v.1.0.2
             vLengthText: "Length __LENGTH__+",
             vLength: "Enter at least __LENGTH__ characters",
         },
+        style: {
+            className: "fw-bold btn btn-sm",
+            isValid: "btn-success",
+            isInvalid: "btn-light",
+            vUppercase: "",
+            vLowercase: "",
+            vNumeric: "",
+            vSpecialChar: "",
+            vLength: ""
+        },
         callback: function() {}
     };
 
     $.fn.passValidate.validate = function(options, string) {
-        if (typeof string != 'string')
+        if (typeof string != 'string') {
             return;
+        }
         if (options.vUppercase === true) {
             _validate.uppercase = /[A-Z]/g.test(string);
         }
@@ -89,75 +100,82 @@ PassValidate v.1.0.2
     $.fn.passValidate.render = function(options) {
         var elementTarget = options.eTarget;
         var language = options.language;
-        if (elementTarget == undefined)
+        var style = options.style;
+        if (elementTarget == undefined) {
             return;
+        }
         if (options.vUppercase === true) {
             var eUppercase = elementTarget.find('[validate-form="uppercase"]');
             if (eUppercase.length == 0) {
-                elementTarget.append('<span class="pvd-uppercase btn btn-'+(_validate.uppercase?'success':'light')+' btn-sm fw-bold" validate-form="uppercase" title="'+language.vUppercase+'">'+language.vUppercaseText+'</span> ');
+                var styleUppercase = 'pvd-uppercase '+style.vUppercase+' '+style.className+' '+(_validate.uppercase ? style.isValid : style.isInvalid);
+                elementTarget.append('<span class="'+styleUppercase+'" validate-form="uppercase" title="'+language.vUppercase+'">'+language.vUppercaseText+'</span> ');
             }
             else {
                 if (_validate.uppercase) {
-                    eUppercase.removeClass('btn-light').addClass('btn-success');
+                    eUppercase.removeClass(style.isInvalid).addClass(style.isValid);
                 }
                 else {
-                    eUppercase.removeClass('btn-success').addClass('btn-light');
+                    eUppercase.removeClass(style.isValid).addClass(style.isInvalid);
                 }
             }
         }
         if (options.vLowercase === true) {
             var eLowercase = elementTarget.find('[validate-form="lowercase"]');
             if (eLowercase.length == 0) {
-                elementTarget.append('<span class="pvd-lowercase btn btn-'+(_validate.lowercase?'success':'light')+' btn-sm fw-bold" validate-form="lowercase" title="'+language.vLowercase+'">'+language.vLowercaseText+'</span> ');
+                var styleLowercase = 'pvd-lowercase '+style.vLowercase+' '+style.className+' '+(_validate.lowercase ? style.isValid : style.isInvalid);
+                elementTarget.append('<span class="'+styleLowercase+'" validate-form="lowercase" title="'+language.vLowercase+'">'+language.vLowercaseText+'</span> ');
             }
             else {
                 if (_validate.lowercase) {
-                    eLowercase.removeClass('btn-light').addClass('btn-success');
+                    eLowercase.removeClass(style.isInvalid).addClass(style.isValid);
                 }
                 else {
-                    eLowercase.removeClass('btn-success').addClass('btn-light');
+                    eLowercase.removeClass(style.isValid).addClass(style.isInvalid);
                 }
             }
         }
         if (options.vNumeric === true) {
             var eNumeric = elementTarget.find('[validate-form="numeric"]');
             if (eNumeric.length == 0) {
-                elementTarget.append('<span class="pvd-numeric btn btn-'+(_validate.numeric?'success':'light')+' btn-sm fw-bold" validate-form="numeric" title="'+language.vNumeric+'">'+language.vNumericText+'</span> ');
+                var styleNumeric = 'pvd-numeric '+style.vNumeric+' '+style.className+' '+(_validate.numeric ? style.isValid : style.isInvalid);
+                elementTarget.append('<span class="'+styleNumeric+'" validate-form="numeric" title="'+language.vNumeric+'">'+language.vNumericText+'</span> ');
             }
             else {
                 if (_validate.numeric) {
-                    eNumeric.removeClass('btn-light').addClass('btn-success');
+                    eNumeric.removeClass(style.isInvalid).addClass(style.isValid);
                 }
                 else {
-                    eNumeric.removeClass('btn-success').addClass('btn-light');
+                    eNumeric.removeClass(style.isValid).addClass(style.isInvalid);
                 }
             }
         }
         if (options.vSpecialChar === true) {
             var eSpecialChar = elementTarget.find('[validate-form="specialChar"]');
             if (eSpecialChar.length == 0) {
-                elementTarget.append('<span class="pvd-specialchar btn btn-'+(_validate.specialChar?'success':'light')+' btn-sm fw-bold" validate-form="specialChar" title="'+language.vSpecialChar.replace('__SPECIAL_CHAR__', options.specialChar)+'">'+language.vSpecialCharText.replace('__SPECIAL_CHAR__', options.specialChar)+'</span> ');
+                var styleSpecialChar = 'pvd-specialChar '+style.vSpecialChar+' '+style.className+' '+(_validate.specialChar ? style.isValid : style.isInvalid);
+                elementTarget.append('<span class="'+styleSpecialChar+'" validate-form="specialChar" title="'+language.vSpecialChar.replace('__SPECIAL_CHAR__', options.specialChar)+'">'+language.vSpecialCharText.replace('__SPECIAL_CHAR__', options.specialChar)+'</span> ');
             }
             else {
                 if (_validate.specialChar) {
-                    eSpecialChar.removeClass('btn-light').addClass('btn-success');
+                    eSpecialChar.removeClass(style.isInvalid).addClass(style.isValid);
                 }
                 else {
-                    eSpecialChar.removeClass('btn-success').addClass('btn-light');
+                    eSpecialChar.removeClass(style.isValid).addClass(style.isInvalid);
                 }
             }
         }
         if (options.vLength === true) {
             var eLength = elementTarget.find('[validate-form="length"]');
             if (eLength.length == 0) {
-                elementTarget.append('<span class="pvd-length btn btn-'+(_validate.length?'success':'light')+' btn-sm fw-bold" validate-form="length" title="'+language.vLength.replace('__LENGTH__', options.length)+'">'+language.vLengthText.replace('__LENGTH__', options.length)+'</span> ');
+                var styleLength = 'pvd-length '+style.vLength+' '+style.className+' '+(_validate.length ? style.isValid : style.isInvalid);
+                elementTarget.append('<span class="'+styleLength+'" validate-form="length" title="'+language.vLength.replace('__LENGTH__', options.length)+'">'+language.vLengthText.replace('__LENGTH__', options.length)+'</span> ');
             }
             else {
                 if (_validate.length) {
-                    eLength.removeClass('btn-light').addClass('btn-success');
+                    eLength.removeClass(style.isInvalid).addClass(style.isValid);
                 }
                 else {
-                    eLength.removeClass('btn-success').addClass('btn-light');
+                    eLength.removeClass(style.isValid).addClass(style.isInvalid);
                 }
             }
         }

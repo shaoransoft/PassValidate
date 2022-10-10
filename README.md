@@ -1,4 +1,4 @@
-# passValidate.js v.1.0.2
+# passValidate.js v.1.0.3
 jQuery library for validation password entry. So that users can see if their password is strong or not.
 <p>developer 2022 Shaoransoft</p>
 <a href="https://jsbin.com/nujuriyiwa/1/edit?html,output" target="_blank">Demo</a>
@@ -99,6 +99,11 @@ jQuery library for validation password entry. So that users can see if their pas
       <td>Set display description for display.</td>
     </tr>
     <tr>
+      <td>style</td>
+      <td>array</td>
+      <td>Set the style of the display elements validation.</td>
+    </tr>
+    <tr>
       <td>callback</td>
       <td></td>
       <td>Callback function results from validation is true or false.<br>Default: false</td>
@@ -164,6 +169,58 @@ jQuery library for validation password entry. So that users can see if their pas
       <td>vLength</td>
       <td>string<br>Default: Enter at least <code>__LENGTH__</code> characters</td>
       <td>Set description character length in title attribute.<br>Can use <code>__LENGTH__</code> to display minimum character length set with option length on the description.</td>
+    </tr>
+  </tbody>
+</table>
+<h5>Style</h5>
+<table>
+  <thead>
+    <tr>
+      <th width="20%">Option</th>
+      <th width="25%">Value</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>className</td>
+      <td>string<br>Default: fw-bold btn btn-sm</td>
+      <td>Set the style all element.</td>
+    </tr>
+    <tr>
+      <td>isValid</td>
+      <td>string<br>Default: btn-success</td>
+      <td>Set the style element when validated to valid.</td>
+    </tr>
+    <tr>
+      <td>isInvalid</td>
+      <td>string<br>Default: btn-light</td>
+      <td>Set the style element when validated to invalid.</td>
+    </tr>
+    <tr>
+      <td>vUppercase</td>
+      <td>string</td>
+      <td>Set the style in uppercase validation element.</td>
+    </tr>
+    <tr>
+      <td>vLowercase</td>
+      <td>string</td>
+      <td>Set the style in lowercase validation element.</td>
+    </tr>
+    <tr>
+      <td>vNumeric</td>
+      <td>string</td>
+      <td>Set the style in numeric character validation element.</td>
+    </tr>
+    <tr>
+      <td>vSpecialChar</td>
+      <td>string</td>
+      <td>Set the style in special character validation element.</td>
+    </tr>
+    <tr>
+      <td>vLength</td>
+      <td>string</td>
+      <td>Set the style in character length validation element.</td>
     </tr>
   </tbody>
 </table>
