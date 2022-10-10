@@ -1,4 +1,4 @@
-# passValidate.js v.1.0.3
+# passValidate.js v.1.0.4
 jQuery library for validation password entry. So that users can see if their password is strong or not.
 <p>developer 2022 Shaoransoft</p>
 <a href="https://shaoransoft.github.io/PassValidate/demo.html" target="_blank">Demo</a>
@@ -20,12 +20,10 @@ jQuery library for validation password entry. So that users can see if their pas
 });</code></pre><br>
     <p>Full source code demo basic:</p>
 <pre><code>&lt;form&gt;
-    &lt;div class="mb-3" id="validate_display"&gt;&lt;/div&gt;
-    &lt;div class="mb-3"&gt;
-        &lt;label for="password" class="form-label"&gt;Password&lt;/label&gt;
-        &lt;input type="password" class="form-control" id="password" placeholder="Enter password"&gt;
-    &lt;/div&gt;
-    &lt;button type="submit" class="btn btn-primary" disabled&gt;Submit&lt;/button&gt;
+    &lt;div id="validate_display"&gt;&lt;/div&gt;
+    &lt;label for="password"&gt;Password&lt;/label&gt;
+    &lt;input type="password" id="password" placeholder="Enter password"&gt;
+    &lt;button type="submit" disabled&gt;Submit&lt;/button&gt;
 &lt;/form&gt;
 &lt;script&gt;
     $(document).ready(function() {
@@ -184,17 +182,17 @@ jQuery library for validation password entry. So that users can see if their pas
   <tbody>
     <tr>
       <td>className</td>
-      <td>string<br>Default: fw-bold btn btn-sm</td>
+      <td>string</td>
       <td>Set the style all element.</td>
     </tr>
     <tr>
       <td>isValid</td>
-      <td>string<br>Default: btn-success</td>
+      <td>string</td>
       <td>Set the style element when validated to valid.</td>
     </tr>
     <tr>
       <td>isInvalid</td>
-      <td>string<br>Default: btn-light</td>
+      <td>string</td>
       <td>Set the style element when validated to invalid.</td>
     </tr>
     <tr>

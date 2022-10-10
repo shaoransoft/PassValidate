@@ -1,5 +1,5 @@
 /*!
-PassValidate.js v.1.0.3
+PassValidate.js v.1.0.4
 (c) 2022 Shaoransoft
 */
 ;(function(factory) {
@@ -61,9 +61,9 @@ PassValidate.js v.1.0.3
             vLength: "Enter at least __LENGTH__ characters",
         },
         style: {
-            className: "fw-bold btn btn-sm",
-            isValid: "btn-success",
-            isInvalid: "btn-light",
+            className: "pvd",
+            isValid: "pvd-valid",
+            isInvalid: "pvd-invalid",
             vUppercase: "",
             vLowercase: "",
             vNumeric: "",

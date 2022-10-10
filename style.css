@@ -1,0 +1,13 @@
+.pvd {
+    padding: .28rem .6rem;
+    border-radius: .45rem;
+    font-weight: bold;
+    font-size: .875rem;
+}
+.pvd-valid {
+    background-color: #28B463;
+    color: #FFFFFF;
+}
+.pvd-invalid {
+    background-color: #F2F3F4;
+}
