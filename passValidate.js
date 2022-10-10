@@ -1,9 +1,7 @@
 /*!
-PassValidate v.1.0.3
-
+PassValidate.js v.1.0.3
 (c) 2022 Shaoransoft
 */
-
 ;(function(factory) {
     "use strict";
     if (typeof define === 'function' && define.amd) {
