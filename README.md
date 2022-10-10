@@ -231,7 +231,7 @@ jQuery library for validation password entry. So that users can see if their pas
 <h5>reload()</h5>
 <p>If you do something to change the input field in addition to the PassValidate events. You can use <code>reload()</code> to refresh the validation again. For example:</p>
 <pre><code>var passValidate = $('#password').passValidate({ ... });
-passValidate.reload();</code></pre><br>
+passValidate.reload();</code></pre>
 <h5>callback()</h5>
 <p>You can use <code>callback()</code> to get the validation status. which the result will be true or false. For example:</p>
 <pre><code>var passValidate = $('#password').passValidate({ ... });
