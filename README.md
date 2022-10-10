@@ -1,4 +1,4 @@
-# passValidate.js v.1.0.4
+# passValidate.js v.1.0.5
 jQuery library for validation password entry. So that users can see if their password is strong or not.
 <p>developer 2022 Shaoransoft</p>
 <a href="https://shaoransoft.github.io/PassValidate/demo.html" target="_blank">Demo</a>
@@ -221,3 +221,18 @@ jQuery library for validation password entry. So that users can see if their pas
     </tr>
   </tbody>
 </table>
+<h3>Global defaults</h3>
+<p>If you need to set the default options for all instances of passValidate in your website. You can set default options by calling <code>$.extend(true, $.fn.passValidate.defaults, {});</code> For example:</p>
+<pre><code>$.extend(true, $.fn.passValidate.defaults, {
+    vUppercase: false,
+    vLowercase: false
+});</code></pre>
+<h3>Methods</h3>
+<h5>reload()</h5>
+<p>If you do something to change the input field in addition to the PassValidate events. You can use <code>reload()</code> to refresh the validation again. For example:</p>
+<pre><code>var passValidate = $('#password').passValidate({ ... });
+passValidate.reload();</code></pre><br>
+<h5>callback()</h5>
+<p>You can use <code>callback()</code> to get the validation status. which the result will be true or false. For example:</p>
+<pre><code>var passValidate = $('#password').passValidate({ ... });
+passValidate.callback();</code></pre>

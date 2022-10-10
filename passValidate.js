@@ -1,5 +1,5 @@
 /*!
-PassValidate.js v.1.0.4
+PassValidate.js v.1.0.5
 (c) 2022 Shaoransoft
 */
 ;(function(factory) {
@@ -36,7 +36,18 @@ PassValidate.js v.1.0.4
                 options.callback.call(this, $.fn.passValidate.callback(_options));
             }
         });
-        _options.callback.call(this, false);
+        this.reload = function() {
+            $.fn.passValidate.validate(_options, _element.val());
+            $.fn.passValidate.render(_options);
+            options.callback.call(this, $.fn.passValidate.callback(_options));
+        }
+        this.callback = function() {
+            return $.fn.passValidate.callback(_options);
+        }
+        this.initialize = function() {
+            return this;
+        }
+        return this.initialize();
     };
 
     $.fn.passValidate.defaults = {

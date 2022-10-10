@@ -14,7 +14,7 @@
 </head>
 <body>
     <div class="container">
-        <h1>passValidate.js v.1.0.4</h1>
+        <h1>passValidate.js v.1.0.5</h1>
         <p>jQuery library for validation password entry. So that users can see if their password is strong or not.</p>
         <p>developer 2022 Shaoransoft. <a href="https://github.com/shaoransoft/PassValidate">github</a></p>
         <h3 id="demo-basic-section">Demo basic</h3>
@@ -263,6 +263,23 @@
                 </tr>
             </tbody>
         </table>
+        <hr>
+        <h3 id="global-defaults-section">Global defaults</h3>
+        <p>If you need to set the default options for all instances of passValidate in your website. You can set default options by calling <code>$.extend(true, $.fn.passValidate.defaults, {});</code> For example:</p>
+<pre class="prettyprint"><code class="language-java">$.extend(true, $.fn.passValidate.defaults, {
+    vUppercase: false,
+    vLowercase: false
+});</code></pre>
+        <hr>
+        <h3 id="methods-section">Methods</h3>
+        <h5 id="method-reload">reload()</h5>
+        <p>If you do something to change the input field in addition to the PassValidate events. You can use <code>reload()</code> to refresh the validation again. For example:</p>
+<pre class="prettyprint"><code class="language-java">var passValidate = $('#password').passValidate({ ... });
+passValidate.reload();</code></pre><br>
+        <h5 id="method-callback">callback()</h5>
+        <p>You can use <code>callback()</code> to get the validation status. which the result will be true or false. For example:</p>
+<pre class="prettyprint"><code class="language-java">var passValidate = $('#password').passValidate({ ... });
+passValidate.callback();</code></pre>
         <hr>
         <p>&copy; 2022 Shaoransoft</p>
     </div>
